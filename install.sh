@@ -67,8 +67,11 @@ install_sqlift() {
     local install_dir="${HOME}/.sqlift"
     mkdir -p "${install_dir}"
 
-    echo -e "${BLUE}Descargando SQLift...${NC}"
     local download_url="${BASE_URL}/${executable}"
+
+    echo "Descargando desde: ${download_url}"
+
+    # Descargar archivo
     curl -L -o "${install_dir}/sqlift" "${download_url}"
     
     if [ $? -ne 0 ]; then
