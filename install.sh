@@ -60,7 +60,7 @@ install_sqlift() {
     echo -e "${BLUE}Instalando SQLift para ${os} ${arch}${NC}"
 
     # Ajustar la ruta según el sistema operativo y la arquitectura
-    local executable="sqlift-${os}-${arch}"
+    local executable="sqlift-${os}-${arch}/${os}-${arch}"
     if [ "${os}" = "windows" ]; then
         executable="${executable}.exe"
     fi
@@ -68,24 +68,25 @@ install_sqlift() {
     local install_dir="${HOME}/.sqlift"
     mkdir -p "${install_dir}"
 
-    local download_url="${BASE_URL}/sqlift-${os}-${arch}"
-
+    # Construir la URL de descarga
+    local download_url="${BASE_URL}/${executable}"
+    
+    # Debugging: Ver la URL generada
     echo "Descargando desde: ${download_url}"
+    echo "Verificando URL para asegurarnos de que está correcta."
+
+    # Verificar si la URL es válida
+    curl -I "${download_url}"
 
     # Descargar archivo
     curl -L -o "${install_dir}/sqlift" "${download_url}"
 
     if [ $? -ne 0 ]; then
-        echo -e "${RED}Error al descargar SQLift${NC}"
+        echo -e "${RED}Error al descargar SQLift. El archivo no existe en la URL indicada.${NC}"
         exit 1
     fi
 
-    # Verificar tipo de archivo
-    echo "Verificando archivo descargado:"
-    file "${install_dir}/sqlift"
-    ls -l "${install_dir}/sqlift"
-
-    # Si el archivo no es un binario ejecutable, terminar
+    # Verificar si el archivo es ejecutable
     if ! file "${install_dir}/sqlift" | grep -q "executable"; then
         echo -e "${RED}El archivo descargado no es un binario ejecutable válido.${NC}"
         exit 1
