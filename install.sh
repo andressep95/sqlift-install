@@ -128,3 +128,4 @@ setup_path() {
 }
 
 install_sqlift
+ 
