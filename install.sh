@@ -80,6 +80,11 @@ install_sqlift() {
         exit 1
     fi
 
+    # Verificar el archivo descargado
+    echo "Verificando archivo descargado:"
+    file "${install_dir}/sqlift"
+    ls -l "${install_dir}/sqlift"
+
     # Verificar si el archivo es ejecutable
     if ! file "${install_dir}/sqlift" | grep -q "executable"; then
         echo -e "${RED}El archivo descargado no es un binario ejecutable válido.${NC}"
