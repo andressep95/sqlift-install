@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Configuración
 VERSION="0.0.4"
