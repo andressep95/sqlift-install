@@ -72,6 +72,13 @@ install_sqlift() {
 
     echo "Descargando desde: ${download_url}"
 
+    # Verificar que la URL responde correctamente
+    http_response=$(curl -s -o /dev/null -w "%{http_code}" "${download_url}")
+    if [ "$http_response" -ne 200 ]; then
+        echo -e "${RED}Error: No se pudo descargar el archivo. Código de respuesta HTTP: $http_response${NC}"
+        exit 1
+    fi
+
     # Descargar archivo
     curl -L -o "${install_dir}/sqlift" "${download_url}"
     
@@ -80,12 +87,11 @@ install_sqlift() {
         exit 1
     fi
 
-    # Verificar el archivo descargado
+    # Verificar si el archivo es ejecutable
     echo "Verificando archivo descargado:"
     file "${install_dir}/sqlift"
     ls -l "${install_dir}/sqlift"
-
-    # Verificar si el archivo es ejecutable
+    
     if ! file "${install_dir}/sqlift" | grep -q "executable"; then
         echo -e "${RED}El archivo descargado no es un binario ejecutable válido.${NC}"
         exit 1
