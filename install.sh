@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="3.0.1"
+VERSION="1.0"
 GITHUB_USER="andressep95"
 REPO_NAME="SQLift"
 BASE_URL="https://github.com/${GITHUB_USER}/${REPO_NAME}/releases/download/v${VERSION}"
