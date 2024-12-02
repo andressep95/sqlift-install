@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-# Configuración
 VERSION="0.0.4"
 GITHUB_USER="andressep95"
 REPO_NAME="SQLift"
@@ -42,7 +41,7 @@ detect_system() {
             ;;
         MINGW*|MSYS*|CYGWIN*)  
             os="windows"
-            arch="x64"  # Windows por ahora solo x64
+            arch="x64"
             ;;
         *)          
             echo -e "${RED}Sistema operativo no soportado${NC}"
@@ -53,7 +52,6 @@ detect_system() {
     echo "${os}:${arch}"
 }
 
-# Instalar SQLift
 install_sqlift() {
     local system=$(detect_system)
     local os=${system%:*}
@@ -61,17 +59,14 @@ install_sqlift() {
     
     echo -e "${BLUE}Instalando SQLift para ${os} ${arch}${NC}"
 
-    # Determinar nombre del ejecutable
     local executable="sqlift-${os}-${arch}"
     if [ "${os}" = "windows" ]; then
         executable="${executable}.exe"
     fi
 
-    # Crear directorio de instalación
     local install_dir="${HOME}/.sqlift"
     mkdir -p "${install_dir}"
 
-    # Descargar ejecutable
     echo -e "${BLUE}Descargando SQLift...${NC}"
     local download_url="${BASE_URL}/${executable}"
     curl -L -o "${install_dir}/sqlift" "${download_url}"
@@ -81,23 +76,19 @@ install_sqlift() {
         exit 1
     fi
 
-    # Hacer ejecutable
     chmod +x "${install_dir}/sqlift"
 
-    # Configurar PATH
     setup_path "${install_dir}"
 
     echo -e "${GREEN}SQLift instalado correctamente!${NC}"
-    echo -e "${BLUE}Reinicia tu terminal o ejecuta: source ~/.bashrc${NC}"
+    echo -e "${BLUE}Reinicia tu terminal o ejecuta: source ~/.zshrc${NC}"
     echo -e "${BLUE}Prueba ejecutando: sqlift --version${NC}"
 }
 
-# Configurar PATH
 setup_path() {
     local install_dir=$1
     local shell_config
 
-    # Detectar shell config file
     if [ -n "${ZSH_VERSION}" ]; then
         shell_config="${HOME}/.zshrc"
     elif [ -n "${BASH_VERSION}" ]; then
@@ -106,11 +97,9 @@ setup_path() {
         shell_config="${HOME}/.profile"
     fi
 
-    # Agregar al PATH si no existe
     if ! grep -q "${install_dir}" "${shell_config}"; then
         echo 'export PATH="$HOME/.sqlift:$PATH"' >> "${shell_config}"
     fi
 }
 
-# Ejecutar instalación
 install_sqlift
