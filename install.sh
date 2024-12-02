@@ -17,19 +17,34 @@ detect_system() {
     local os arch
 
     case "$(uname -s)" in
-        Darwin*)    os="macos" ;;
-        Linux*)     os="linux" ;;
-        MINGW*|MSYS*|CYGWIN*)  os="windows" ;;
+        Darwin*)    
+            os="macos"
+            case "$(uname -m)" in
+                arm64)      arch="arm64" ;;
+                x86_64)     arch="x64" ;;
+                *)
+                    echo -e "${RED}Arquitectura no soportada${NC}"
+                    exit 1
+                    ;;
+            esac
+            ;;
+        Linux*)     
+            os="linux"
+            case "$(uname -m)" in
+                x86_64|amd64)   arch="x64" ;;
+                aarch64|arm64)   arch="arm64" ;;
+                *)              
+                    echo -e "${RED}Arquitectura no soportada${NC}"
+                    exit 1
+                    ;;
+            esac
+            ;;
+        MINGW*|MSYS*|CYGWIN*)  
+            os="windows"
+            arch="x64"  # Windows por ahora solo x64
+            ;;
         *)          
             echo -e "${RED}Sistema operativo no soportado${NC}"
-            exit 1
-            ;;
-    esac
-
-    case "$(uname -m)" in
-        x86_64|amd64)   arch="x64" ;;
-        *)              
-            echo -e "${RED}Arquitectura no soportada${NC}"
             exit 1
             ;;
     esac
