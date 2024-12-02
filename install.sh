@@ -79,6 +79,12 @@ install_sqlift() {
         exit 1
     fi
 
+    # Verificar si el archivo es ejecutable
+    if ! file "${install_dir}/sqlift" | grep -q "executable"; then
+        echo -e "${RED}El archivo descargado no es un binario ejecutable válido.${NC}"
+        exit 1
+    fi
+
     chmod +x "${install_dir}/sqlift"
 
     setup_path "${install_dir}"
@@ -100,9 +106,13 @@ setup_path() {
         shell_config="${HOME}/.profile"
     fi
 
+    # Añadir al PATH si no está ya
     if ! grep -q "${install_dir}" "${shell_config}"; then
         echo 'export PATH="$HOME/.sqlift:$PATH"' >> "${shell_config}"
     fi
+
+    # Recargar el archivo de configuración del shell
+    source "${shell_config}"
 }
 
 install_sqlift
