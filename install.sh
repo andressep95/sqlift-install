@@ -60,7 +60,7 @@ install_sqlift() {
     echo -e "${BLUE}Instalando SQLift para ${os} ${arch}${NC}"
 
     # Ajustar la ruta según el sistema operativo y la arquitectura
-    local executable="sqlift-${os}-${arch}/${os}-${arch}"
+    local executable="sqlift-${os}-${arch}"
     if [ "${os}" = "windows" ]; then
         executable="${executable}.exe"
     fi
