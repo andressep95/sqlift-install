@@ -32,7 +32,7 @@ detect_system() {
             os="linux"
             case "$(uname -m)" in
                 x86_64|amd64)   arch="x64" ;;
-                aarch64|arm64)   arch="arm64" ;;
+                aarch64|arm64)  arch="arm64" ;;
                 *)              
                     echo -e "${RED}Arquitectura no soportada${NC}"
                     exit 1
@@ -59,7 +59,8 @@ install_sqlift() {
     
     echo -e "${BLUE}Instalando SQLift para ${os} ${arch}${NC}"
 
-    local executable="sqlift-${os}-${arch}"
+    # Ajustar la ruta según el sistema operativo y la arquitectura
+    local executable="sqlift-${os}-${arch}/${os}-${arch}"
     if [ "${os}" = "windows" ]; then
         executable="${executable}.exe"
     fi
