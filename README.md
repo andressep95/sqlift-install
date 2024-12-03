@@ -1,39 +1,39 @@
-Tu README está bastante claro. Aquí tienes el archivo README actualizado con el comando de instalación mejorado, el cual incluye la verificación del archivo descargado:
-
----
-
 # SQLift Installer
 
-Este script instala SQLift en tu sistema con un solo comando.
+## Introduction
 
-### Comando para instalar SQLift:
+SQLift is a tool that helps you map SQL queries to Java objects. This script installs SQLift on your system with a single command.
+
+## Installation
+
+### Command to install SQLift:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/install.sh | bash
 ```
 
-### Descripción:
+### Description:
 
-Este script detecta automáticamente tu sistema operativo y arquitectura (macOS, Linux o Windows) y descarga el archivo correspondiente de SQLift. Luego, instala el archivo binario en el directorio `~/.sqlift` y lo añade a tu PATH para que puedas usar el comando `sqlift` desde cualquier terminal.
+This script automatically detects your operating system and architecture (macOS, Linux, or Windows) and downloads the corresponding SQLift binary. It then installs the binary file in the `~/.sqlift` directory and adds it to your PATH so you can use the `sqlift` command from any terminal.
 
-### Verificación de la instalación:
+### Verification of the installation:
 
-El script verifica automáticamente que el archivo descargado sea ejecutable antes de completar la instalación.
+The script automatically verifies that the downloaded file is executable before completing the installation.
 
-Si todo ha ido bien, verás un mensaje de éxito con una indicación para reiniciar el terminal o ejecutar:
+If everything went well, you will see a success message with an indication to restart the terminal or run:
 
 ```bash
-source ~/.zshrc  # Si usas zsh
-# O
-source ~/.bashrc  # Si usas bash
+source ~/.zshrc  # If you use zsh
+# Or
+source ~/.bashrc  # If you use bash
 ```
 
-Finalmente, prueba la instalación ejecutando:
+Finally, test the installation by running:
 
 ```bash
 sqlift --version
 ```
 
----
+## License
 
-Este README debe ser suficiente para que los usuarios comprendan cómo instalar SQLift usando el script y cómo verificar que la instalación fue exitosa.
+[Placeholder for license information]
