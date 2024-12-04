@@ -46,9 +46,9 @@ sql:
   output:
     package: "com.example.demo.entity"
     options:
-      lombok: false
+      lombok: true or false
       jpa:
-        enabled: true
+        enabled: true or false
         type: "jakarta"  # or "javax"
 ```
 
