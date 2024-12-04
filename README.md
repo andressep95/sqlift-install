@@ -1,4 +1,6 @@
 # SQLift Installer
+
+### Repositorio de la herramienta (Por favor ingresar y dejar sus issues y estrellas)
 https://github.com/andressep95/SQLift
 
 ## Introduction
