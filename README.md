@@ -1,4 +1,5 @@
 # SQLift Installer
+https://github.com/andressep95/SQLift
 
 ## Introduction
 
