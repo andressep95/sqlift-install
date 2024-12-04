@@ -1,5 +1,5 @@
 {
-  "name": "sqlift-docs",
+  "name": "sqlift-install",
   "homepage": "https://andressep95.github.io/sqlift-install/",
   "private": true,
   "scripts": {
@@ -7,8 +7,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "predeploy": "ng build",
-    "deploy": "gh-pages -d dist/sqlift-docs"
+    "predeploy": "ng build --base-href=/sqlift-install/",
+    "deploy": "gh-pages -d dist/sqlift-install"
   },
   "dependencies": {
     "@angular/animations": "^17.1.0",
