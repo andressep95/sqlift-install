@@ -1,6 +1,6 @@
 {
   "name": "sqlift-docs",
-  "homepage": "https://andressep95.github.io/sqlift-install",
+  "homepage": "https://andressep95.github.io/sqlift-install/",
   "private": true,
   "scripts": {
     "ng": "ng",
