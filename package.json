@@ -1,11 +1,14 @@
 {
   "name": "sqlift-docs",
+  "homepage": "https://andressep95.github.io/sqlift-install",
   "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "predeploy": "ng build",
+    "deploy": "gh-pages -d dist/sqlift-docs"
   },
   "dependencies": {
     "@angular/animations": "^17.1.0",
@@ -30,6 +33,7 @@
     "@types/highlight.js": "^10.1.0",
     "@types/marked": "^5.0.2",
     "@types/prismjs": "^1.26.3",
+    "gh-pages": "^6.2.0",
     "sass": "^1.70.0",
     "typescript": "~5.2.0"
   }
