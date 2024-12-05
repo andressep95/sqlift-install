@@ -14,8 +14,19 @@ import { Component } from '@angular/core';
         
         <div class="card installation">
           <h2>Instalación</h2>
-          <div class="code-block">
-            <code>curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/install.sh | bash</code>
+          <div class="installation-commands">
+            <div class="command-block">
+              <p><strong>Para MacOS:</strong></p>
+              <code>curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/macos-install.sh | bash</code>
+            </div>
+            <div class="command-block">
+              <p><strong>Para Windows:</strong></p>
+              <code>Invoke-WebRequest -Uri https://raw.githubusercontent.com/andressep95/sqlift-install/main/windows-install.ps1 -OutFile install.ps1; .\install.ps1</code>
+            </div>
+            <div class="command-block">
+              <p><strong>Para Linux:</strong></p>
+              <code>curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/linux-install.sh | bash</code>
+            </div>
           </div>
         </div>
 
@@ -50,6 +61,36 @@ import { Component } from '@angular/core';
     }
     .installation {
       margin: 2rem 0;
+    }
+    .installation-commands {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .command-block {
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      padding: 0.8rem 1.2rem;  /* Reducción del padding vertical */
+      width: 100%;
+      max-width: 1000px;         /* Aumentamos el ancho para hacerlo más largo */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    .command-block p {
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .command-block code {
+      display: block;
+      background-color: #333;
+      color: #fff;
+      padding: 0.8rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      word-wrap: break-word;
+      white-space: pre-wrap;
     }
     .github-link {
       margin: 2rem 0;

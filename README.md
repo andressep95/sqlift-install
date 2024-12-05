@@ -3,48 +3,59 @@
 ### Repositorio de la herramienta (Por favor ingresar y dejar sus issues y estrellas)
 https://github.com/andressep95/SQLift
 
-## Introduction
+## Introducción
 
-SQLift is a tool that helps you map SQL queries to Java objects. This script installs SQLift on your system with a single command.
+SQLift es una herramienta que te ayuda a mapear consultas SQL a objetos Java. Este instalador te permite configurar SQLift en tu sistema con un solo comando, adaptado a tu sistema operativo.
 
-## Installation
+## Instalación
 
-### Command to install SQLift:
+### Comandos de instalación por sistema operativo:
 
+#### macOS (Apple Silicon o Intel):
 ```bash
-curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/macos-install.sh | bash
 ```
 
-### Description:
-
-This script automatically detects your operating system and architecture (macOS, Linux, or Windows) and downloads the corresponding SQLift binary. It then installs the binary file in the `~/.sqlift` directory and adds it to your PATH so you can use the `sqlift` command from any terminal.
-
-### Verification of the installation:
-
-The script automatically verifies that the downloaded file is executable before completing the installation.
-
-If everything went well, you will see a success message with an indication to restart the terminal or run:
-
-```bash
-source ~/.zshrc  # If you use zsh
-# Or
-source ~/.bashrc  # If you use bash
+#### Windows (PowerShell):
+```powershell
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/andressep95/sqlift-install/main/windows-install.ps1 -OutFile install.ps1; .\install.ps1
 ```
 
-Finally, test the installation by running:
+#### Linux:
+```bash
+curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/linux-install.sh | bash
+```
+
+### Descripción:
+
+Estos comandos descargan el binario correspondiente. Posteriormente, instalan el archivo binario en el directorio `~/.sqlift` y lo agregan a tu `PATH`, permitiéndote usar el comando `sqlift` desde cualquier terminal.
+
+### Verificación de la instalación:
+
+El script verifica automáticamente que el archivo descargado sea ejecutable antes de completar la instalación. 
+
+Si todo funcionó correctamente, verás un mensaje de éxito indicando que reinicies tu terminal o ejecutes:
+
+```bash
+source ~/.zshrc  # Si usas zsh
+# O
+source ~/.bashrc  # Si usas bash
+```
+
+Finalmente, prueba la instalación ejecutando:
 
 ```bash
 sqlift --version
 ```
 
-## Configuration
+## Configuración
 
-Edit the `sqlift.yaml` file with the following structure:
+Edita el archivo `sqlift.yaml` con la siguiente estructura:
 
 ```yaml
 version: "1"
 sql:
-  engine: "postgresql"     # Database engine
+  engine: "postgresql"     # Motor de base de datos
   schema: "path/to/your/schema.sql"
   output:
     package: "com.example.demo.entity"
@@ -52,51 +63,47 @@ sql:
       lombok: true or false
       jpa:
         enabled: true or false
-        type: "jakarta"  # or "javax"
+        type: "jakarta"  # o "javax"
 ```
 
-### Configuration Options:
+### Opciones de configuración:
 
-- `version`: Configuration version (currently "1")
+- `version`: Versión de la configuración (actualmente "1")
 - `sql`:
-  - `engine`: Database engine (postgresql, mysql, etc.)
-  - `schema`: Path to your SQL schema file
+  - `engine`: Motor de base de datos (postgresql, mysql, etc.)
+  - `schema`: Ruta a tu archivo de esquema SQL
   - `output`:
-    - `package`: Base package for generated entities
+    - `package`: Paquete base para las entidades generadas
     - `options`:
-      - `lombok`: Enable/disable Lombok annotations
+      - `lombok`: Activar/desactivar anotaciones de Lombok
       - `jpa`:
-        - `enabled`: Enable/disable JPA annotations
-        - `type`: Select JPA implementation ("jakarta" or "javax")
+        - `enabled`: Activar/desactivar anotaciones de JPA
+        - `type`: Seleccionar implementación de JPA ("jakarta" o "javax")
 
-## Supported Features
+## Características soportadas
 
-- Supported Databases:
+- Motores de bases de datos soportados:
   - PostgreSQL
-  - MySQL (Coming soon)
-  - Oracle (Coming soon)
-  - SQL Server (Coming soon)
+  - MySQL (Próximamente)
+  - Oracle (Próximamente)
+  - SQL Server (Próximamente)
 
-- Code Generation Options:
-  - Lombok annotations (@Data, @Getter, @Setter, etc.)
-  - JPA annotations:
+- Opciones de generación de código:
+  - Anotaciones de Lombok (@Data, @Getter, @Setter, etc.)
+  - Anotaciones de JPA:
     - Jakarta EE (@Entity, @Table, @Column, etc.)
     - Java EE (javax.persistence.*)
 
-## Usage
+## Uso
 
-1. Initialize the configuration:
+1. Inicializa la configuración:
    ```bash
    sqlift init
    ```
 
-2. Edit the `sqlift.yaml` file with your configuration
+2. Edita el archivo `sqlift.yaml` con tu configuración.
 
-3. Generate the entities:
+3. Genera las entidades:
    ```bash
    sqlift generate
    ```
-
-## License
-
-[Placeholder for license information]
