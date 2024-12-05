@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="1.0"
+VERSION="1.0.0"
 BASE_URL="https://github.com/andressep95/SQLift/releases/download/v${VERSION}"
 
 log() { echo -e "\033[1;34mℹ\033[0m $1"; }
