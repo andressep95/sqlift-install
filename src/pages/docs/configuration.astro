@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Configuration - SQLift">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="prose prose-blue max-w-none">
+      <h1>Configuration</h1>
+
+      <h2>Configuration File</h2>
+      <p>SQLift uses a YAML configuration file (sqlift.yaml) to customize its behavior. Here's a complete reference of available options:</p>
+
+      <h3>Basic Configuration</h3>
+      <pre><code>version: "1"
+sql:
+  engine: "postgresql"  # Database engine
+  schema: "schema.sql" # Path to schema file
+  output:
+    package: "com.example.entity"
+    directory: "src/main/java"</code></pre>
+
+      <h3>Advanced Options</h3>
+      <pre><code>version: "1"
+sql:
+  engine: "postgresql"
+  schema: "schema.sql"
+  output:
+    package: "com.example.entity"
+    directory: "src/main/java"
+    options:
+      lombok: true  # Enable Lombok annotations
+      jpa:
+        enabled: true
+        type: "jakarta"  # or "javax"
+      naming:
+        class:
+          strategy: "singular"  # Convert plural to singular
+        field:
+          strategy: "camelCase"  # Convert snake_case to camelCase
+      generation:
+        constructors:
+          default: true
+          allArgs: true
+        methods:
+          getters: true
+          setters: true
+          toString: true
+          equals: true
+          hashCode: true</code></pre>
+
+      <h2>Configuration Options</h2>
+      
+      <h3>Database Engine</h3>
+      <p>Supported values for sql.engine:</p>
+      <ul>
+        <li>postgresql (fully supported)</li>
+        <li>mysql (planned)</li>
+        <li>oracle (planned)</li>
+        <li>sqlserver (planned)</li>
+      </ul>
+
+      <h3>JPA Implementation</h3>
+      <p>Choose between Jakarta EE and Java EE annotations:</p>
+      <ul>
+        <li>jakarta - Uses jakarta.persistence.* packages</li>
+        <li>javax - Uses javax.persistence.* packages</li>
+      </ul>
+
+      <h3>Lombok Integration</h3>
+      <p>When lombok: true is set, SQLift will:</p>
+      <ul>
+        <li>Add @Data annotation for getters/setters</li>
+        <li>Use @NoArgsConstructor for default constructor</li>
+        <li>Use @AllArgsConstructor for all-args constructor</li>
+        <li>Add @Builder for builder pattern support</li>
+      </ul>
+
+      <h2>Environment Variables</h2>
+      <p>SQLift also supports configuration through environment variables:</p>
+      <ul>
+        <li>SQLIFT_CONFIG - Path to configuration file</li>
+        <li>SQLIFT_SCHEMA - Path to schema file</li>
+        <li>SQLIFT_OUTPUT_DIR - Output directory</li>
+        <li>SQLIFT_PACKAGE - Base package name</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

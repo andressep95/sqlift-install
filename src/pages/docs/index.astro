@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Documentation - SQLift">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="prose prose-blue max-w-none">
+      <h1>SQLift Documentation</h1>
+      
+      <h2>Core Functionality</h2>
+      <ul>
+        <li>Automatically generates Java entity classes from SQL schema files</li>
+        <li>Converts SQL table definitions into JPA-annotated Java classes</li>
+        <li>Transforms database relationships into proper Java entity references</li>
+        <li>Supports both Jakarta EE and Java EE (javax) persistence annotations</li>
+        <li>Optional Lombok integration for boilerplate code reduction</li>
+      </ul>
+
+      <h2>Key Features</h2>
+      
+      <h3>1. Schema Processing</h3>
+      <ul>
+        <li>Parses CREATE TABLE statements from SQL files</li>
+        <li>Handles complex table relationships (foreign keys)</li>
+        <li>Supports PostgreSQL data types (with MySQL, Oracle, and SQL Server planned)</li>
+        <li>Maintains table relationships in generated code</li>
+        <li>Smart naming convention conversion:
+          <ul>
+            <li>snake_case to camelCase for fields</li>
+            <li>Plural to singular for class names</li>
+            <li>Proper Java naming conventions</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>2. Code Generation</h3>
+      <ul>
+        <li>Generates clean, well-formatted Java code</li>
+        <li>Creates proper entity classes with:
+          <ul>
+            <li>Appropriate JPA annotations (@Entity, @Table, etc.)</li>
+            <li>Primary key handling (@Id, @GeneratedValue)</li>
+            <li>Foreign key relationships</li>
+            <li>Column mappings with constraints (@Column with name)</li>
+          </ul>
+        </li>
+        <li>Includes:
+          <ul>
+            <li>Default constructor</li>
+            <li>All-args constructor</li>
+            <li>Getters and setters</li>
+            <li>Proper imports management</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>3. Configuration</h3>
+      <ul>
+        <li>YAML-based configuration file</li>
+        <li>Database engine selection</li>
+        <li>Schema file path specification</li>
+        <li>Output package configuration</li>
+        <li>JPA implementation choice (Jakarta/javax)</li>
+        <li>Lombok integration toggle</li>
+        <li>Flexible output options</li>
+        <li>Customizable package structure</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

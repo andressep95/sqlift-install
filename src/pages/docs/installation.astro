@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Installation - SQLift">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="prose prose-blue max-w-none">
+      <h1>Installation</h1>
+
+      <h2>Supported Platforms</h2>
+      <p>SQLift provides native executables for the following platforms:</p>
+      <ul>
+        <li>Linux (x64)</li>
+        <li>macOS (x64, arm64)</li>
+        <li>Windows (x64)</li>
+      </ul>
+
+      <h2>Quick Install</h2>
+      <p>Install SQLift using curl:</p>
+      <pre><code>curl -fsSL https://sqlift.dev/install.sh | sh</code></pre>
+
+      <h2>Manual Installation</h2>
+      <ol>
+        <li>Download the appropriate binary for your platform from the releases page</li>
+        <li>Extract the archive</li>
+        <li>Add the binary to your PATH</li>
+      </ol>
+
+      <h2>Verifying Installation</h2>
+      <p>Verify the installation by running:</p>
+      <pre><code>sqlift --version</code></pre>
+
+      <h2>Getting Started</h2>
+      <p>After installation, you can start using SQLift with these basic commands:</p>
+      
+      <h3>1. Initialize a new project</h3>
+      <pre><code>sqlift init</code></pre>
+
+      <h3>2. Configure your project</h3>
+      <p>Create or modify sqlift.yaml:</p>
+      <pre><code>version: "1"
+sql:
+  engine: "postgresql"
+  schema: "schema.sql"
+  output:
+    package: "com.example.entity"
+    options:
+      lombok: false
+      jpa:
+        enabled: true
+        type: "jakarta"</code></pre>
+
+      <h3>3. Generate entities</h3>
+      <pre><code>sqlift generate</code></pre>
+    </div>
+  </div>
+</Layout>
