@@ -15,7 +15,7 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content="SQLift - SQL to Java Entity Generator CLI Tool" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -25,16 +25,16 @@ const { title } = Astro.props;
         <div class="flex justify-between h-16">
           <div class="flex">
             <div class="flex-shrink-0 flex items-center">
-              <a href="/" class="text-2xl font-bold text-primary-600">SQLift</a>
+              <a href={`${import.meta.env.BASE_URL}`} class="text-2xl font-bold text-primary-600">SQLift</a>
             </div>
             <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <a href="/docs" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900">
+              <a href={`${import.meta.env.BASE_URL}docs`} class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900">
                 Documentation
               </a>
-              <a href="/docs/installation" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900">
+              <a href={`${import.meta.env.BASE_URL}docs/installation`} class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900">
                 Installation
               </a>
-              <a href="/docs/configuration" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900">
+              <a href={`${import.meta.env.BASE_URL}docs/configuration`} class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900">
                 Configuration
               </a>
             </div>
@@ -54,4 +54,9 @@ const { title } = Astro.props;
     </header>
     <slot />
   </body>
-</html>
+</html># Commit los cambios
+git add .
+git commit -m "Fix base path routing"
+
+# Hacer el deploy
+npm run deploy
