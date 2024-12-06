@@ -7,6 +7,11 @@ export default defineConfig({
   base: '/sqlift-install',
   output: 'static',
   build: {
-    assets: 'assets'
+    assets: '_assets',
+  },
+  vite: {
+    build: {
+      assetsInlineLimit: 0
+    }
   }
 });
