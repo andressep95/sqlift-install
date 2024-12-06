@@ -5,5 +5,13 @@ export default defineConfig({
   integrations: [tailwind()],
   site: 'https://andressep95.github.io',
   base: '/sqlift-install',
-  output: 'static'
+  outDir: './dist',
+  build: {
+    assets: '_assets'
+  },
+  vite: {
+    build: {
+      assetsInlineLimit: 0
+    }
+  }
 });
