@@ -31,75 +31,78 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="py-12 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="lg:text-center">
-          <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Features</h2>
-          <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-            Everything you need for Java entity generation
-          </p>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="lg:text-center">
+      <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Features</h2>
+      <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Everything you need for Java entity generation
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+        <!-- Schema Processing Card -->
+        <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+          <dt>
+            <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+              </svg>
+            </div>
+            <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Schema Processing</p>
+          </dt>
+          <dd class="mt-2 ml-16 text-base text-gray-500">
+            Parse CREATE TABLE statements, handle relationships, and maintain proper naming conventions.
+          </dd>
         </div>
 
-        <div class="mt-10">
-          <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
-          
-            <div class="relative">
-              <dt>
-                <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                  </svg>
-                </div>
-                <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Schema Processing</p>
-              </dt>
-              <dd class="mt-2 ml-16 text-base text-gray-500">
-                Parse CREATE TABLE statements, handle relationships, and maintain proper naming conventions.
-              </dd>
+        <!-- Code Generation Card -->
+        <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+          <dt>
+            <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
             </div>
+            <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Code Generation</p>
+          </dt>
+          <dd class="mt-2 ml-16 text-base text-gray-500">
+            Generate clean, well-formatted Java code with proper JPA annotations and entity relationships.
+          </dd>
+        </div>
 
-            <div class="relative">
-              <dt>
-                <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                </div>
-                <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Code Generation</p>
-              </dt>
-              <dd class="mt-2 ml-16 text-base text-gray-500">
-                Generate clean, well-formatted Java code with proper JPA annotations and entity relationships.
-              </dd>
+        <!-- Configuration Card -->
+        <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+          <dt>
+            <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
             </div>
+            <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Configuration</p>
+          </dt>
+          <dd class="mt-2 ml-16 text-base text-gray-500">
+            YAML-based configuration with flexible options for database engine, output package, and more.
+          </dd>
+        </div>
 
-            <div class="relative">
-              <dt>
-                <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                  </svg>
-                </div>
-                <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Configuration</p>
-              </dt>
-              <dd class="mt-2 ml-16 text-base text-gray-500">
-                YAML-based configuration with flexible options for database engine, output package, and more.
-              </dd>
+        <!-- Cross-Platform Card -->
+        <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+          <dt>
+            <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
             </div>
-
-            <div class="relative">
-              <dt>
-                <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Cross-Platform</p>
-              </dt>
-              <dd class="mt-2 ml-16 text-base text-gray-500">
-                Native executables for Linux, macOS, and Windows with excellent performance.
-              </dd>
-            </div>
-          </div>
+            <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Cross-Platform</p>
+          </dt>
+          <dd class="mt-2 ml-16 text-base text-gray-500">
+            Native executables for Linux, macOS, and Windows with excellent performance.
+          </dd>
         </div>
       </div>
     </div>
+  </div>
+</div>
   </main>
 </Layout>
