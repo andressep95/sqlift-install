@@ -42,7 +42,7 @@ export default function Installation() {
           </div>
         </div>
 
-        <div className="mt-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mt-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             <InstallCard
               icon={<Circle className="h-6 w-6" />}
