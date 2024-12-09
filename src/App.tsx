@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -8,7 +7,7 @@ import Configuration from './pages/Configuration';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/sqlift-install">
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

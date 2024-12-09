@@ -28,13 +28,14 @@ export default function Layout({ children }: LayoutProps) {
           <div className="flex justify-between h-16">
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
+                {/* Modificación aquí para evitar duplicación en la ruta */}
                 <Link to="/" className="text-2xl font-bold text-primary-600">SQLift</Link>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <Link 
                   to="/docs" 
                   className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                    location.pathname.startsWith('/docs') ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
+                    location.pathname.startsWith('/sqlift-install/docs') ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
                   }`}
                 >
                   Documentation
@@ -42,7 +43,7 @@ export default function Layout({ children }: LayoutProps) {
                 <Link 
                   to="/docs/installation" 
                   className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                    location.pathname === '/docs/installation' ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
+                    location.pathname === '/sqlift-install/docs/installation' ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
                   }`}
                 >
                   Installation
@@ -50,7 +51,7 @@ export default function Layout({ children }: LayoutProps) {
                 <Link 
                   to="/docs/configuration" 
                   className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                    location.pathname === '/docs/configuration' ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
+                    location.pathname === '/sqlift-install/docs/configuration' ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
                   }`}
                 >
                   Configuration
@@ -66,9 +67,9 @@ export default function Layout({ children }: LayoutProps) {
               >
                 <Github className="h-6 w-6" />
                 <div className="ml-4 text-sm font-medium text-gray-500">
-                {/* Mostrar el número de estrellas */}
-                Stars: {stars}
-              </div>
+                  {/* Mostrar el número de estrellas */}
+                  Stars: {stars}
+                </div>
               </a>
             </div>
           </div>
