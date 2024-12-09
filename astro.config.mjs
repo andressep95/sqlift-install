@@ -3,11 +3,10 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://andressep95.github.io',
-  base: '/sqlift-install',
+  site: 'https://andressep95.github.io/sqlift-install',
   outDir: './dist',
   build: {
-    assets: '_assets'
+    assets: 'assets'
   },
   vite: {
     build: {
