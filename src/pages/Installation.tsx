@@ -52,7 +52,7 @@ export default function Installation() {
             />
             <InstallCard
               icon={<Square className="h-6 w-6" />}
-              platform="Windows"
+              platform="Windows x64"
               subtitle="PowerShell or CMD Installation"
               commands={[
                 {
