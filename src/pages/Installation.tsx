@@ -1,5 +1,5 @@
 import React from 'react';
-import { Circle, Square, Menu } from 'lucide-react';
+import { Circle, Menu } from 'lucide-react';
 
 export default function Installation() {
   return (
@@ -49,21 +49,6 @@ export default function Installation() {
               platform="macOS"
               subtitle="Apple Silicon & Intel"
               command="curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/macos-install.sh | bash"
-            />
-            <InstallCard
-              icon={<Square className="h-6 w-6" />}
-              platform="Windows x64"
-              subtitle="PowerShell or CMD Installation"
-              commands={[
-                {
-                  type: "PowerShell",
-                  command: "Invoke-WebRequest -Uri https://raw.githubusercontent.com/andressep95/sqlift-install/main/windows-install.ps1 -OutFile install.ps1; .\\install.ps1"
-                },
-                {
-                  type: "CMD",
-                  command: "curl -o install.cmd https://raw.githubusercontent.com/andressep95/sqlift-install/main/windows-install.cmd && install.cmd"
-                }
-              ]}
             />
             <InstallCard
               icon={<Menu className="h-6 w-6" />}
