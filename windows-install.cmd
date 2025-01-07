@@ -8,14 +8,18 @@ echo Instalando dependencias requeridas...
 if "%ARCH%"=="arm64" (
     echo Descargando Visual C++ Redistributable ARM64...
     curl -L -o "%TEMP%\vc_redist.exe" https://aka.ms/vs/17/release/VC_redist.arm64.exe
+    "%TEMP%\vc_redist.exe" /install /q
 ) else (
     echo Descargando Visual C++ Redistributable x64...
     curl -L -o "%TEMP%\vc_redist.exe" https://aka.ms/vs/17/release/VC_redist.x64.exe
+    "%TEMP%\vc_redist.exe" /install /q
 )
 
-echo Instalando Visual C++ Redistributable...
-"%TEMP%\vc_redist.exe" /install /passive /norestart
-if errorlevel 1 echo Error al instalar Visual C++ Redistributable
+if errorlevel 1 (
+    echo Error al instalar Visual C++ Redistributable
+) else (
+    echo Visual C++ Redistributable instalado correctamente
+)
 
 del "%TEMP%\vc_redist.exe"
 
@@ -27,5 +31,5 @@ curl -L -o "%INSTALL_DIR%\sqlift.exe" "%EXE_URL%"
 setx PATH "%PATH%;%INSTALL_DIR%" > nul 2>&1
 echo Instalacion completada. Reinicia tu terminal y prueba con: sqlift --version
 
-echo Presiona cualquier tecla para continuar...
+echo Presiona cualquier tecla para salir...
 pause > nul
