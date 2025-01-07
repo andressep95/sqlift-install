@@ -53,8 +53,17 @@ export default function Installation() {
             <InstallCard
               icon={<Square className="h-6 w-6" />}
               platform="Windows"
-              subtitle="PowerShell Command"
-              command="Invoke-WebRequest -Uri https://raw.githubusercontent.com/andressep95/sqlift-install/main/windows-install.ps1 -OutFile install.ps1; .\install.ps1"
+              subtitle="PowerShell or CMD Installation"
+              commands={[
+                {
+                  type: "PowerShell",
+                  command: "Invoke-WebRequest -Uri https://raw.githubusercontent.com/andressep95/sqlift-install/main/windows-install.ps1 -OutFile install.ps1; .\\install.ps1"
+                },
+                {
+                  type: "CMD",
+                  command: "curl -o install.cmd https://raw.githubusercontent.com/andressep95/sqlift-install/main/windows-install.cmd && install.cmd"
+                }
+              ]}
             />
             <InstallCard
               icon={<Menu className="h-6 w-6" />}
@@ -89,10 +98,14 @@ interface InstallCardProps {
   icon: React.ReactNode;
   platform: string;
   subtitle: string;
-  command: string;
+  command?: string;
+  commands?: Array<{
+    type: string;
+    command: string;
+  }>;
 }
 
-function InstallCard({ icon, platform, subtitle, command }: InstallCardProps) {
+function InstallCard({ icon, platform, subtitle, command, commands }: InstallCardProps) {
   return (
     <div className="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200">
       <dt>
@@ -103,9 +116,22 @@ function InstallCard({ icon, platform, subtitle, command }: InstallCardProps) {
       </dt>
       <dd className="mt-2 ml-16">
         <p className="text-base text-gray-500 mb-4">{subtitle}</p>
-        <div className="bg-gray-50 rounded-md p-4">
-          <pre className="text-sm overflow-x-auto"><code>{command}</code></pre>
-        </div>
+        {command ? (
+          <div className="bg-gray-50 rounded-md p-4">
+            <pre className="text-sm overflow-x-auto"><code>{command}</code></pre>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {commands?.map((cmd, index) => (
+              <div key={index}>
+                <p className="text-sm font-medium text-gray-700 mb-2">{cmd.type}:</p>
+                <div className="bg-gray-50 rounded-md p-4">
+                  <pre className="text-sm overflow-x-auto"><code>{cmd.command}</code></pre>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </dd>
     </div>
   );
