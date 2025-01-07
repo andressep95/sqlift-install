@@ -14,7 +14,9 @@ if "%ARCH%"=="arm64" (
 )
 
 echo Instalando Visual C++ Redistributable...
-"%TEMP%\vc_redist.exe" /passive /norestart
+"%TEMP%\vc_redist.exe" /install /passive /norestart
+if errorlevel 1 echo Error al instalar Visual C++ Redistributable
+
 del "%TEMP%\vc_redist.exe"
 
 echo Instalando SQLift...
@@ -22,7 +24,8 @@ set "BASE_URL=https://github.com/andressep95/SQLift/releases/download/v%VERSION%
 set "EXE_URL=%BASE_URL%/sqlift-windows-%ARCH%.exe"
 if not exist "%INSTALL_DIR%" mkdir "%INSTALL_DIR%"
 curl -L -o "%INSTALL_DIR%\sqlift.exe" "%EXE_URL%"
-setx PATH "%PATH%;%INSTALL_DIR%" > nul
+setx PATH "%PATH%;%INSTALL_DIR%" > nul 2>&1
 echo Instalacion completada. Reinicia tu terminal y prueba con: sqlift --version
 
-pause
+echo Presiona cualquier tecla para continuar...
+pause > nul
