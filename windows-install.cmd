@@ -3,31 +3,26 @@ chcp 65001 > nul
 setlocal enabledelayedexpansion
 
 :: Configuración
-set VERSION=1.0.0"
-set INSTALL_DIR=%USERPROFILE%\.sqlift
+set "VERSION=1.0.0"
+set "INSTALL_DIR=%USERPROFILE%\.sqlift"
 
 :: Detectar arquitectura del sistema
-set ARCH=x64
+set "ARCH=x64"
 echo Detectando arquitectura del sistema...
-wmic os get osarchitecture | find "64-bit" > nul
-if %errorlevel% equ 0 (
-    if "%PROCESSOR_ARCHITECTURE%"=="ARM64" (
-        set ARCH=arm64
-        echo Arquitectura ARM64 detectada
-    ) else (
-        echo Arquitectura x64 detectada
-    )
+
+if "%PROCESSOR_ARCHITECTURE%"=="ARM64" (
+    set "ARCH=arm64"
+    echo Arquitectura ARM64 detectada
 ) else (
-    echo ADVERTENCIA: Arquitectura no soportada
-    exit /b 1
+    echo Arquitectura x64 detectada
 )
 
-set BASE_URL=https://github.com/andressep95/SQLift/releases/download/v%VERSION%
-set EXE_URL=%BASE_URL%/sqlift-windows-%ARCH%.exe
+set "BASE_URL=https://github.com/andressep95/SQLift/releases/download/v%VERSION%"
+set "EXE_URL=%BASE_URL%/sqlift-windows-%ARCH%.exe"
 
 :: Crear directorio de instalación
 if not exist "%INSTALL_DIR%" (
-    echo Creando directorio de instalación...
+    echo Creando directorio de instalacion...
     mkdir "%INSTALL_DIR%"
 )
 
@@ -43,4 +38,4 @@ if %errorlevel% neq 0 (
 echo Agregando SQLift al PATH...
 setx PATH "%PATH%;%INSTALL_DIR%"
 
-echo Instalación completada. Reinicia tu terminal y prueba con: sqlift --version
+echo Instalacion completada. Reinicia tu terminal y prueba con: sqlift --version
