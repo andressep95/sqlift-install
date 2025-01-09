@@ -1,92 +1,112 @@
 import React from 'react';
-import { Database, Code2, Settings, Check } from 'lucide-react';
+import { Terminal, Code2, Database, Settings, GitBranch } from 'lucide-react';
 
-const yamlConfigExample = `version: "1"
+const initCommand = `sqlift init`;
+
+const generateCommand = `sqlift generate`;
+
+const configExample = `version: "1.0"
 sql:
- engine: "postgresql"   # Database engine
- schema: "schema.sql"   # Path to your SQL schema file
- output:
-   package: "cl.playground.alumnos.entity"  # Target package for generated entities
-   options:
-     lombok: false     # Enable/disable Lombok annotations
-     jpa:
-       enabled: true   # Enable JPA annotations
-       type: "javax"   # Choose between "javax" or "jakarta"`;
+  engine: "postgres"  # Database engine
+  schema: "schema.sql"  # Path to SQL schema file
+  output:
+    package: "cl.playground.SpringSecurityBackend.model"  # Base package for generated entities
+    lombok: true  # Enable/disable Lombok annotations`;
 
-const sqlSchemaExample = `CREATE TABLE usuarios (
-   id SERIAL PRIMARY KEY,
-   nombre VARCHAR(100) NOT NULL,
-   email VARCHAR(150) UNIQUE NOT NULL,
-   fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);`;
+const dockerExample = `# Pull the image
+docker pull ghcr.io/andressep95/sqlift-cli:latest
 
-const javaEntityExample = `// javax EE Entity Example
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+# Initialize configuration
+docker run --rm -v $(pwd):/workspace ghcr.io/andressep95/sqlift-cli:latest init /workspace
 
-@Entity
-@Table(name = "Usuario")
-public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "nombre", length = 100, nullable = false)
-    private String nombre;
-    @Column(name = "email", length = 150, nullable = false, unique = true)
-    private String email;
-    @Column(name = "fecha_creacion")
-    private java.time.LocalDateTime fechaCreacion;
-}`;
+# Generate entities
+docker run --rm -v $(pwd):/workspace ghcr.io/andressep95/sqlift-cli:latest generate /workspace
 
-const jakartaEntityExample = javaEntityExample.replace(/javax/g, 'jakarta');
+# Interactive mode
+docker run -it -v $(pwd):/workspace ghcr.io/andressep95/sqlift-cli:latest`;
 
-export default function Configuration() {
+const supportedFeatures = `# Supported Databases:
+- PostgreSQL
+- MySQL (Coming soon)
+- Oracle (Coming soon)
+- SQL Server (Coming soon)
+
+# Code Generation Options:
+- Lombok annotations (@Data, @Getter, @Setter, etc.)
+- JPA annotations:
+  - Jakarta EE (@Entity, @Table, @Column, etc.)
+  - Java EE (javax.persistence.*)`;
+
+export default function Usage() {
   return (
-    <main>
-      <div className="relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main className="bg-gray-50">
+      <div className="relative flex items-center justify-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-              <span className="block">SQLift Configuration</span>
+              <span className="block">SQLift Usage</span>
             </h1>
             <p className="mt-3 max-w-2xl mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl">
-              Configure SQLift to match your project's needs with a simple YAML file
+              Learn how to use SQLift to generate Java entities from your SQL schema
             </p>
+            <div className="mt-8">
+              <a
+                href="https://github.com/andressep95/SQLift"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-10 shadow-lg"
+              >
+                <GitBranch className="mr-2 h-5 w-5" />
+                GitHub Repository
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-1 md:gap-8">
-            <ConfigSection
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-base text-primary-600 font-semibold tracking-wide uppercase">
+              Getting Started
+            </h2>
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              How to Use SQLift
+            </p>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+              Follow these steps to generate your Java entities from SQL schemas
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-8">
+            <UsageSection
+              icon={<Terminal className="h-6 w-6" />}
+              title="Basic Commands"
+              description="Basic commands to get started with SQLift:"
+              code={`${initCommand}\n\n${generateCommand}`}
+            />
+
+            <UsageSection
               icon={<Settings className="h-6 w-6" />}
-              title="Basic Configuration"
-              description="Create a sqlift.yaml file in your project root:"
-              code={yamlConfigExample}
+              title="Configuration"
+              description="Create a sqlift.yml file with your configuration:"
+              code={configExample}
             />
-            <ConfigSection
+
+            <UsageSection
               icon={<Database className="h-6 w-6" />}
-              title="Schema Input"
-              description="Example schema.sql file:"
-              code={sqlSchemaExample}
+              title="Docker Usage"
+              description="Using SQLift with Docker:"
+              code={dockerExample}
             />
-            <ConfigSection
+
+            <UsageSection
               icon={<Code2 className="h-6 w-6" />}
-              title="Javax EE Output"
-              description="Generated Java entity with Javax EE annotations:"
-              code={javaEntityExample}
-            />
-            <ConfigSection
-              icon={<Code2 className="h-6 w-6" />}
-              title="Jakarta EE Output"
-              description="Generated Java entity with Jakarta EE annotations:"
-              code={jakartaEntityExample}
+              title="Supported Features"
+              description="Currently supported features and upcoming additions:"
+              code={supportedFeatures}
             />
           </div>
         </div>
@@ -95,14 +115,14 @@ export default function Configuration() {
   );
 }
 
-interface ConfigSectionProps {
+interface UsageSectionProps {
   icon: React.ReactNode;
   title: string;
   description: string;
   code: string;
 }
 
-function ConfigSection({ icon, title, description, code }: ConfigSectionProps) {
+function UsageSection({ icon, title, description, code }: UsageSectionProps) {
   return (
     <div className="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200">
       <dt>
@@ -113,7 +133,9 @@ function ConfigSection({ icon, title, description, code }: ConfigSectionProps) {
       </dt>
       <dd className="mt-2 ml-16 text-base text-gray-500">
         {description}
-        <pre className="mt-3 text-sm bg-gray-50 p-3 rounded-md overflow-x-auto">{code}</pre>
+        <div className="mt-3 bg-gray-50 rounded-md p-4">
+          <pre className="text-sm overflow-x-auto"><code>{code}</code></pre>
+        </div>
       </dd>
     </div>
   );

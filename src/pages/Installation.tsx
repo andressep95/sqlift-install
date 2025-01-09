@@ -1,5 +1,5 @@
 import React from 'react';
-import { Circle, Menu } from 'lucide-react';
+import { Circle, Menu, Server, Terminal } from 'lucide-react';
 
 export default function Installation() {
   return (
@@ -56,6 +56,12 @@ export default function Installation() {
               subtitle="Bash Command"
               command="curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/linux-install.sh | bash"
             />
+            <InstallCard
+              icon={<Terminal className="h-6 w-6" />}
+              platform="Docker"
+              subtitle="Run in any environment"
+              command="docker pull ghcr.io/andressep95/sqlift-cli:latest"
+            />
           </div>
         </div>
 
@@ -71,6 +77,8 @@ export default function Installation() {
             </div>
             <div className="bg-gray-50 rounded-md p-4 max-w-2xl mx-auto">
               <pre className="text-sm overflow-x-auto"><code>sqlift --version</code></pre>
+              <p className="mt-4">For Docker:</p>
+              <pre className="text-sm overflow-x-auto"><code>docker run --rm ghcr.io/andressep95/sqlift-cli:latest --version</code></pre>
             </div>
           </div>
         </div>
