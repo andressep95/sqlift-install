@@ -1,7 +1,3 @@
-Aquí está el README actualizado, eliminando el apartado solicitado y agregando la información sobre el uso de Docker:
-
----
-
 # SQLift Installer
 
 ### Repositorio de la herramienta (Por favor ingresar y dejar sus issues y estrellas)
@@ -128,6 +124,3 @@ sql:
    sqlift generate
    ```
 
----
-
-Este README ahora incluye la sección sobre el uso de Docker y elimina el apartado de verificación de la instalación como solicitaste. 🚀
