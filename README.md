@@ -1,3 +1,7 @@
+Aquí está el README actualizado, eliminando el apartado solicitado y agregando la información sobre el uso de Docker:
+
+---
+
 # SQLift Installer
 
 ### Repositorio de la herramienta (Por favor ingresar y dejar sus issues y estrellas)
@@ -16,11 +20,6 @@ SQLift es una herramienta que te ayuda a mapear consultas SQL a objetos Java. Es
 curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/macos-install.sh | bash
 ```
 
-#### Windows (PowerShell):
-```powershell
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/andressep95/sqlift-install/main/windows-install.ps1 -OutFile install.ps1; .\install.ps1
-```
-
 #### Linux:
 ```bash
 curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/linux-install.sh | bash
@@ -30,17 +29,7 @@ curl -fsSL https://raw.githubusercontent.com/andressep95/sqlift-install/main/lin
 
 Estos comandos descargan el binario correspondiente. Posteriormente, instalan el archivo binario en el directorio `~/.sqlift` y lo agregan a tu `PATH`, permitiéndote usar el comando `sqlift` desde cualquier terminal.
 
-### Verificación de la instalación:
-
-El script verifica automáticamente que el archivo descargado sea ejecutable antes de completar la instalación. 
-
-Si todo funcionó correctamente, verás un mensaje de éxito indicando que reinicies tu terminal o ejecutes:
-
-```bash
-source ~/.zshrc  # Si usas zsh
-# O
-source ~/.bashrc  # Si usas bash
-```
+### Verificación:
 
 Finalmente, prueba la instalación ejecutando:
 
@@ -48,37 +37,68 @@ Finalmente, prueba la instalación ejecutando:
 sqlift --version
 ```
 
+## Uso con Docker
+
+Si prefieres usar SQLift mediante Docker, sigue los siguientes pasos:
+
+1. **Descargar la imagen desde GitHub Container Registry (GHCR):**
+   ```bash
+   docker pull ghcr.io/andressep95/sqlift-cli:latest
+   ```
+
+2. **Inicializar la configuración:**
+   ```bash
+   docker run --rm -v $(pwd):/workspace ghcr.io/andressep95/sqlift-cli:latest init /workspace
+   ```
+
+3. **Editar el archivo de configuración `sqlift.yml`:**
+   Asegúrate de que el archivo tenga la siguiente estructura:
+   ```yaml
+   version: "1.0"
+   sql:
+     engine: "postgres"
+     schema: "schema.sql"
+     output:
+       package: "cl.playground.SpringSecurityBackend.model"
+       lombok: true
+   ```
+
+4. **Generar las entidades:**
+   ```bash
+   docker run --rm -v $(pwd):/workspace ghcr.io/andressep95/sqlift-cli:latest generate /workspace
+   ```
+
+5. **Modo interactivo:**
+   Si prefieres mantener el contenedor activo para ejecutar varios comandos:
+   ```bash
+   docker run -it -v $(pwd):/workspace ghcr.io/andressep95/sqlift-cli:latest
+   ```
+
+---
+
 ## Configuración
 
-Edita el archivo `sqlift.yaml` con la siguiente estructura:
+Edita el archivo `sqlift.yml` con la siguiente estructura:
 
 ```yaml
-version: "1"
+version: "1.0"
 sql:
-  engine: "postgresql"     # Motor de base de datos
-  schema: "path/to/your/schema.sql"
+  engine: "postgres"  # Motor de base de datos
+  schema: "schema.sql"  # Ruta al archivo de esquema SQL
   output:
-    package: "com.example.demo.entity"
-    options:
-      lombok: true or false
-      jpa:
-        enabled: true or false
-        type: "jakarta"  # o "javax"
+    package: "cl.playground.SpringSecurityBackend.model"  # Paquete base para las entidades generadas
+    lombok: true  # Activar/desactivar anotaciones de Lombok
 ```
 
 ### Opciones de configuración:
 
-- `version`: Versión de la configuración (actualmente "1")
+- `version`: Versión de la configuración (actualmente "1.0")
 - `sql`:
-  - `engine`: Motor de base de datos (postgresql, mysql, etc.)
-  - `schema`: Ruta a tu archivo de esquema SQL
+  - `engine`: Motor de base de datos soportado (actualmente `postgres`)
+  - `schema`: Ruta al archivo de esquema SQL
   - `output`:
-    - `package`: Paquete base para las entidades generadas
-    - `options`:
-      - `lombok`: Activar/desactivar anotaciones de Lombok
-      - `jpa`:
-        - `enabled`: Activar/desactivar anotaciones de JPA
-        - `type`: Seleccionar implementación de JPA ("jakarta" o "javax")
+    - `package`: Nombre del paquete base donde se generarán las entidades
+    - `lombok`: Habilita o deshabilita las anotaciones de Lombok en las entidades generadas
 
 ## Características soportadas
 
@@ -101,9 +121,13 @@ sql:
    sqlift init
    ```
 
-2. Edita el archivo `sqlift.yaml` con tu configuración.
+2. Edita el archivo `sqlift.yml` con tu configuración.
 
 3. Genera las entidades:
    ```bash
    sqlift generate
    ```
+
+---
+
+Este README ahora incluye la sección sobre el uso de Docker y elimina el apartado de verificación de la instalación como solicitaste. 🚀
